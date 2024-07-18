@@ -1,9 +1,9 @@
-let canvasElem = document.querySelector('canvas')
+let canvasElem = document.querySelector("canvas")
 
 canvasElem.width = window.innerWidth
 canvasElem.height = window.innerHeight
 
-let c = canvasElem.getContext('2d')
+let c = canvasElem.getContext("2d")
 
 // c.fillStyle = 'red'
 
@@ -46,12 +46,17 @@ let c = canvasElem.getContext('2d')
 //   )}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random())})`
 //   c.fillRect(x, y, 30, 30)
 // }
+
+//* This code allows us to create a instance of an arc, but I cannot fully comprehend this because of the 'this' keyword
 function Circle(x, y, dx, dy, radius) {
   this.x = x
   this.y = y
   this.dx = dx
   this.dy = dy
   this.radius = radius
+  this.color = `rgba(${Math.round(Math.random() * 255)}, ${Math.round(
+    Math.random() * 255
+  )}, ${Math.round(Math.random() * 255)}, 1)`
 
   this.draw = function () {
     c.beginPath()
@@ -59,10 +64,8 @@ function Circle(x, y, dx, dy, radius) {
     c.strokeStyle = `rgba(255,0,0,0.5)`
     c.stroke()
     // * Trigger Warning * //
-    // c.fillStyle = `rgba(${Math.round(Math.random() * 255)}, ${Math.round(
-    //   Math.random() * 255,
-    // )}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random())})`
-    // c.fill()
+    c.fillStyle = this.color
+    c.fill()
   }
 
   this.update = function () {
@@ -82,7 +85,7 @@ function Circle(x, y, dx, dy, radius) {
 let circle = new Circle(200, 200, 3, 3, 30)
 
 let circleArray = []
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 300; i++) {
   let radius = 50
   let x = Math.random() * (innerWidth - radius * 2) + radius
   let y = Math.random() * (innerHeight - radius * 2) + radius
@@ -95,6 +98,7 @@ for (let i = 0; i < 100; i++) {
 
 function animate() {
   requestAnimationFrame(animate)
+  //* The canvas keeps drawing the circle one after the other with each increment, but the clearRect makes sure that it clears the screen before the next one is drawn. *//
   c.clearRect(0, 0, innerWidth, innerHeight)
 
   for (let i = 0; i < circleArray.length; i++) {
@@ -110,6 +114,7 @@ function animate() {
   // c.strokeStyle = `rgba(255,0,0,0.5)`
   // c.stroke()
 
+  //* Both the if conditions keep the arc from going outside the screen *//
   // if (x + radius > innerWidth || x - radius < 0) {
   //   dx = -dx
   // }
@@ -117,8 +122,10 @@ function animate() {
   // if (y + radius > innerHeight || y - radius < 0) {
   //   dy = -dy
   // }
+  //* We add the values to keep the arc moving *//
   // x += dx
   // y += dy
 }
 
+//* We call this function once over here and the first line requestAnimationFrame calls the function recursively until the end of time *//
 animate()
