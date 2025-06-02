@@ -1,7 +1,7 @@
 // learn how to use arc, begin path, move To , lineTo, rect and stroke
 
-export function TreeHouse(ctx) {
-  ctx.strokeStyle = '#000'
+export function treeHouse(ctx) {
+  ctx.strokeStyle = "#000"
   ctx.beginPath()
   ctx.moveTo(200, 500)
   ctx.lineTo(500, 500)
@@ -33,7 +33,7 @@ export function TreeHouse(ctx) {
   // drawSmiley(ctx)
 
   // Time to draw the bird
-  ctx.strokStyle = '#000'
+  ctx.strokStyle = "#000"
   ctx.beginPath()
   ctx.arc(450, 435, 20, 0, Math.PI * 2, false)
   ctx.stroke()
@@ -43,7 +43,7 @@ export function TreeHouse(ctx) {
   ctx.lineTo(440, 420)
   ctx.lineTo(480, 435)
   ctx.lineTo(450, 440)
-  ctx.fillStyle = '#fff'
+  ctx.fillStyle = "#fff"
   ctx.fill()
   // or ctx.closePath()
   // ctx.lineTo(425, 465)
@@ -51,7 +51,7 @@ export function TreeHouse(ctx) {
 
   ctx.beginPath()
   ctx.arc(425, 400, 30, 0, Math.PI * 2, false) // Head
-  ctx.fillStyle = '#fff'
+  ctx.fillStyle = "#fff"
   ctx.fill()
   ctx.stroke()
   // eye
@@ -64,7 +64,7 @@ export function TreeHouse(ctx) {
   ctx.lineTo(405, 420)
   ctx.lineTo(375, 420)
   ctx.lineTo(405, 410)
-  ctx.fillStyle = '#fff'
+  ctx.fillStyle = "#fff"
   ctx.fill()
   // or ctx.closePath()
   ctx.stroke()
