@@ -1,4 +1,5 @@
 import { rectangle } from './geometricpattern.js'
+import { movingBall } from './movingBall.js'
 import { drawSmiley } from './smiley.js'
 import { snowman } from './snowman.js'
 import { treeHouse } from './treehouse.js'
@@ -26,31 +27,34 @@ function draw() {
   const canvas = document.getElementById('myCanvas')
   if (canvas.getContext) {
     const ctx = canvas.getContext('2d')
-    const minX = 0
-    const rangeX = 700
+
+    const firstCircle = {
+      id: Math.random(),
+      customX: 0,
+    }
+    const circleArray = [firstCircle]
+
+    canvas.addEventListener('mousemove', function (e) {
+      console.log(e)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      // ctx.beginPath()
+      // ctx.arc(e.clientX, e.clientY, 30, 0, Math.PI * 2, false)
+      // ctx.stroke()
+      if (circleArray.length < 5) {
+        circleArray.push({
+          id: Math.random(),
+          customX: e.clientX,
+        })
+        movingBall(ctx, canvas, circleArray)
+      }
+    })
+
+    movingBall(ctx, canvas, circleArray)
+
+    // circleArray.map((item, idx) => movingBall(ctx, canvas, item.customX))
+
     // Draw grid for reference
     // drawGrid(ctx, canvas.width, canvas.height)
-    let p = 0
-    let sign = 1
-    function animate() {
-      const circleX = minX + rangeX * p
-      p = p + 0.02 * sign
-      console.log(circleX, p)
-      if (p > 1) {
-        sign = -1
-      }
-      if (p < 0) {
-        sign = 1
-      }
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.beginPath()
-      ctx.arc(circleX, 350, 20, 0, Math.PI * 2, false)
-      ctx.stroke()
-
-      requestAnimationFrame(animate)
-    }
-
-    animate()
   }
 }
 
