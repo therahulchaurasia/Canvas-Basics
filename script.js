@@ -31,19 +31,19 @@ function draw() {
     const firstCircle = {
       id: Math.random(),
       customX: 0,
+      customY: 350,
     }
     const circleArray = [firstCircle]
 
-    canvas.addEventListener('mousemove', function (e) {
-      console.log(e)
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      // ctx.beginPath()
-      // ctx.arc(e.clientX, e.clientY, 30, 0, Math.PI * 2, false)
-      // ctx.stroke()
+    canvas.addEventListener('mousedown', function (e) {
+      if (circleArray.length === 5) {
+        circleArray.pop()
+      }
       if (circleArray.length < 5) {
         circleArray.push({
           id: Math.random(),
           customX: e.clientX,
+          customY: e.clientY,
         })
         movingBall(ctx, canvas, circleArray)
       }
