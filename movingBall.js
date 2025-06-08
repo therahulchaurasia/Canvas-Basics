@@ -1,10 +1,9 @@
 export function movingBall(ctx, canvas, circleArray) {
   const minX = 0
-  let rangeX = 700
-  let rangeY = 700
+  let rangeX = 500
+  let rangeY = 500
   let p = 0
   let sign = 1
-  console.log(circleArray)
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     circleArray.map((item, idx) => {

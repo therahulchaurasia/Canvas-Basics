@@ -1,11 +1,11 @@
-export function snowman(ctx) {
+export function NonExtendableSnowMan(ctx) {
   const x1 = 350
   const y1 = 550
   const r1 = 100
   const scaleFactor = 0.8
-  body(x1 - r1 * 2, y1, r1, scaleFactor * 0.8, ctx)
-  body(x1, y1, r1,  scaleFactor * 0.6, ctx)
-  body(x1 + r1 * 2, y1, r1,scaleFactor, ctx)
+  Body(x1 - r1 * 2, y1, r1, scaleFactor * 0.8, ctx)
+  Body(x1, y1, r1, scaleFactor * 0.6, ctx)
+  Body(x1 + r1 * 2, y1, r1, scaleFactor, ctx)
   // const width = 700
   // const height = 700
   // const spacing = 100
@@ -20,7 +20,7 @@ export function snowman(ctx) {
   // }
 }
 
-function body(x1, y1, r1, scaleFactor, ctx) {
+export function Body(x1, y1, r1, scaleFactor, ctx) {
   ctx.beginPath()
   ctx.arc(x1, y1, r1, 0, Math.PI * 2, false)
   ctx.fillStyle = 'white'

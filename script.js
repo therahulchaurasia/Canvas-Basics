@@ -1,8 +1,4 @@
-import { rectangle } from './geometricpattern.js'
-import { movingBall } from './movingBall.js'
-import { drawSmiley } from './smiley.js'
-import { snowman } from './snowman.js'
-import { treeHouse } from './treehouse.js'
+import { Body } from './snowman.js'
 
 function drawGrid(ctx, width, height, step = 25) {
   ctx.strokeStyle = '#ddd'
@@ -28,33 +24,46 @@ function draw() {
   if (canvas.getContext) {
     const ctx = canvas.getContext('2d')
 
-    const firstCircle = {
-      id: Math.random(),
-      customX: 0,
-      customY: 350,
-    }
-    const circleArray = [firstCircle]
+    // Draw grid for reference
+    const minX = 225
+    const rangeX = 50
+    let p = 0
 
-    canvas.addEventListener('mousedown', function (e) {
-      if (circleArray.length === 5) {
-        circleArray.pop()
-      }
-      if (circleArray.length < 5) {
-        circleArray.push({
-          id: Math.random(),
-          customX: e.clientX,
-          customY: e.clientY,
-        })
-        movingBall(ctx, canvas, circleArray)
-      }
+    canvas.addEventListener('mousemove', function (e) {
+      p = e.offsetX / canvas.width
     })
 
-    movingBall(ctx, canvas, circleArray)
+    const bowTie = new Image()
+    bowTie.src = 'bowTie.png'
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      drawGrid(ctx, canvas.width, canvas.height)
+      Body(250, 650, 130, 0.8, ctx)
+      // p = p + 0.02
+      // if (p > 1) {
+      //   p = 0
+      // }
 
-    // circleArray.map((item, idx) => movingBall(ctx, canvas, item.customX))
+      const leftEyeX = minX + rangeX * p - 25
+      const rightEyeX = minX + rangeX * p + 25
+      ctx.beginPath()
 
-    // Draw grid for reference
-    // drawGrid(ctx, canvas.width, canvas.height)
+      ctx.arc(leftEyeX, 225, 15, 0, Math.PI * 2, false)
+      ctx.arc(rightEyeX, 225, 15, 0, Math.PI * 2, false)
+      ctx.fillStyle = 'black'
+      ctx.fill()
+      ctx.drawImage(bowTie, 200, 290, 100, 50)
+      requestAnimationFrame(animate)
+      ctx.beginPath()
+      ctx.font = '40px Comic Sans MS'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText('Merry', 250, 375)
+      ctx.fillText('Christmas', 250, 425)
+      // ctx.arc(250, 375, 5, 0, Math.PI * 2)
+      // ctx.fill()
+    }
+    animate()
   }
 }
 
