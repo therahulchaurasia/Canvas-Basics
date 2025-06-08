@@ -1,11 +1,11 @@
-import { rectangle } from "./geometricpattern.js"
-import { drawSmiley } from "./smiley.js"
-import { snowman } from "./snowman.js"
-import { treeHouse } from "./treehouse.js"
+import { rectangle } from './geometricpattern.js'
+import { drawSmiley } from './smiley.js'
+import { snowman } from './snowman.js'
+import { treeHouse } from './treehouse.js'
 
 function drawGrid(ctx, width, height, step = 25) {
-  ctx.strokeStyle = "#ddd"
-  ctx.font = "10px sans-serif"
+  ctx.strokeStyle = '#ddd'
+  ctx.font = '10px sans-serif'
   for (let x = 0; x <= width; x += step) {
     ctx.beginPath()
     ctx.moveTo(x, 0)
@@ -23,19 +23,28 @@ function drawGrid(ctx, width, height, step = 25) {
 }
 
 function draw() {
-  const canvas = document.getElementById("myCanvas")
+  const canvas = document.getElementById('myCanvas')
   if (canvas.getContext) {
-    const ctx = canvas.getContext("2d")
-
+    const ctx = canvas.getContext('2d')
+    const minX = 0
+    const rangeX = 700
     // Draw grid for reference
     // drawGrid(ctx, canvas.width, canvas.height)
-    let circleX = 350
     let p = 0
+    let sign = 1
     function animate() {
-      p = p + 5
+      const circleX = minX + rangeX * p
+      p = p + 0.02 * sign
+      console.log(circleX, p)
+      if (p > 1) {
+        sign = -1
+      }
+      if (p < 0) {
+        sign = 1
+      }
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.beginPath()
-      ctx.arc(circleX + p, 350, 20, 0, Math.PI * 2, false)
+      ctx.arc(circleX, 350, 20, 0, Math.PI * 2, false)
       ctx.stroke()
 
       requestAnimationFrame(animate)
