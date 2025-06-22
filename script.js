@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alpha: true,
   })
 
-  ctx.fillStyle = '#fb7427'
+  ctx.fillStyle = '#000000'
   ctx.fillRect(0, 0, width, height)
 
   const fontSize = Math.round(250 * window.devicePixelRatio)
