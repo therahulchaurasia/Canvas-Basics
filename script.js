@@ -29,7 +29,45 @@ function draw() {
     const ctx = canvas.getContext('2d')
 
     // Draw grid for reference
-    // drawGrid(ctx, canvas.width, canvas.height)
+    const minX = 225
+    const rangeX = 50
+    let p = 0
+
+    canvas.addEventListener('mousemove', function (e) {
+      p = e.offsetX / canvas.width
+    })
+
+    const bowTie = new Image()
+    bowTie.src = 'bowTie.png'
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      drawGrid(ctx, canvas.width, canvas.height)
+      Body(250, 650, 130, 0.8, ctx)
+      // p = p + 0.02
+      // if (p > 1) {
+      //   p = 0
+      // }
+
+      const leftEyeX = minX + rangeX * p - 25
+      const rightEyeX = minX + rangeX * p + 25
+      ctx.beginPath()
+
+      ctx.arc(leftEyeX, 225, 15, 0, Math.PI * 2, false)
+      ctx.arc(rightEyeX, 225, 15, 0, Math.PI * 2, false)
+      ctx.fillStyle = 'black'
+      ctx.fill()
+      ctx.drawImage(bowTie, 200, 290, 100, 50)
+      requestAnimationFrame(animate)
+      ctx.beginPath()
+      ctx.font = '40px Comic Sans MS'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText('Merry', 250, 375)
+      ctx.fillText('Christmas', 250, 425)
+      // ctx.arc(250, 375, 5, 0, Math.PI * 2)
+      // ctx.fill()
+    }
+    animate()
 
     // const firstCircle = {
     //   id: Math.random(),
