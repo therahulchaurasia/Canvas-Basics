@@ -92,4 +92,5 @@ body {
 canvas {
   /* background: rgb(4, 140, 189); */
   border: 2px solid;
+  background-color: aqua;
 }
