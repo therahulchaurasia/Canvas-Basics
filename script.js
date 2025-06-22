@@ -1,102 +1,102 @@
 import {
-  renderFragmentShader,
-  renderVertexShader,
-  simulationFragmentShader,
   simulationVertexShader,
-} from './shader'
-function drawGrid(ctx, width, height, step = 25) {
-  ctx.strokeStyle = '#ddd'
-  ctx.font = '10px sans-serif'
-  for (let x = 0; x <= width; x += step) {
-    ctx.beginPath()
-    ctx.moveTo(x, 0)
-    ctx.lineTo(x, height)
-    ctx.stroke()
-    ctx.fillText(x, x + 2, 10)
-  }
-  for (let y = 0; y <= height; y += step) {
-    ctx.beginPath()
-    ctx.moveTo(0, y)
-    ctx.lineTo(width, y)
-    ctx.stroke()
-    ctx.fillText(y, 2, y - 2)
-  }
-}
+  simulationFragmentShader,
+  renderVertexShader,
+  renderFragmentShader,
+} from './shader.js'
+// function drawGrid(ctx, width, height, step = 25) {
+//   ctx.strokeStyle = '#ddd'
+//   ctx.font = '10px sans-serif'
+//   for (let x = 0; x <= width; x += step) {
+//     ctx.beginPath()
+//     ctx.moveTo(x, 0)
+//     ctx.lineTo(x, height)
+//     ctx.stroke()
+//     ctx.fillText(x, x + 2, 10)
+//   }
+//   for (let y = 0; y <= height; y += step) {
+//     ctx.beginPath()
+//     ctx.moveTo(0, y)
+//     ctx.lineTo(width, y)
+//     ctx.stroke()
+//     ctx.fillText(y, 2, y - 2)
+//   }
+// }
 
-function draw() {
-  const canvas = document.getElementById('myCanvas')
-  if (canvas.getContext) {
-    const ctx = canvas.getContext('2d')
+// function draw() {
+//   const canvas = document.getElementById('myCanvas')
+//   if (canvas.getContext) {
+//     const ctx = canvas.getContext('2d')
 
-    // Draw grid for reference
-    const minX = 225
-    const rangeX = 50
-    let p = 0
+//     // Draw grid for reference
+//     const minX = 225
+//     const rangeX = 50
+//     let p = 0
 
-    canvas.addEventListener('mousemove', function (e) {
-      p = e.offsetX / canvas.width
-    })
+//     canvas.addEventListener('mousemove', function (e) {
+//       p = e.offsetX / canvas.width
+//     })
 
-    const bowTie = new Image()
-    bowTie.src = 'bowTie.png'
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      drawGrid(ctx, canvas.width, canvas.height)
-      Body(250, 650, 130, 0.8, ctx)
-      // p = p + 0.02
-      // if (p > 1) {
-      //   p = 0
-      // }
+//     const bowTie = new Image()
+//     bowTie.src = 'bowTie.png'
+//     function animate() {
+//       ctx.clearRect(0, 0, canvas.width, canvas.height)
+//       drawGrid(ctx, canvas.width, canvas.height)
+//       Body(250, 650, 130, 0.8, ctx)
+//       // p = p + 0.02
+//       // if (p > 1) {
+//       //   p = 0
+//       // }
 
-      const leftEyeX = minX + rangeX * p - 25
-      const rightEyeX = minX + rangeX * p + 25
-      ctx.beginPath()
+//       const leftEyeX = minX + rangeX * p - 25
+//       const rightEyeX = minX + rangeX * p + 25
+//       ctx.beginPath()
 
-      ctx.arc(leftEyeX, 225, 15, 0, Math.PI * 2, false)
-      ctx.arc(rightEyeX, 225, 15, 0, Math.PI * 2, false)
-      ctx.fillStyle = 'black'
-      ctx.fill()
-      ctx.drawImage(bowTie, 200, 290, 100, 50)
-      requestAnimationFrame(animate)
-      ctx.beginPath()
-      ctx.font = '40px Comic Sans MS'
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.fillText('Merry', 250, 375)
-      ctx.fillText('Christmas', 250, 425)
-      // ctx.arc(250, 375, 5, 0, Math.PI * 2)
-      // ctx.fill()
-    }
-    animate()
+//       ctx.arc(leftEyeX, 225, 15, 0, Math.PI * 2, false)
+//       ctx.arc(rightEyeX, 225, 15, 0, Math.PI * 2, false)
+//       ctx.fillStyle = 'black'
+//       ctx.fill()
+//       ctx.drawImage(bowTie, 200, 290, 100, 50)
+//       requestAnimationFrame(animate)
+//       ctx.beginPath()
+//       ctx.font = '40px Comic Sans MS'
+//       ctx.textAlign = 'center'
+//       ctx.textBaseline = 'middle'
+//       ctx.fillText('Merry', 250, 375)
+//       ctx.fillText('Christmas', 250, 425)
+//       // ctx.arc(250, 375, 5, 0, Math.PI * 2)
+//       // ctx.fill()
+//     }
+//     animate()
 
-    // const firstCircle = {
-    //   id: Math.random(),
-    //   customX: 0,
-    //   customY: 350,
-    // }
-    // const circleArray = [firstCircle]
+//     // const firstCircle = {
+//     //   id: Math.random(),
+//     //   customX: 0,
+//     //   customY: 350,
+//     // }
+//     // const circleArray = [firstCircle]
 
-    // canvas.addEventListener('mousedown', function (e) {
-    //   if (circleArray.length === 5) {
-    //     circleArray.pop()
-    //   }
-    //   if (circleArray.length < 5) {
-    //     circleArray.push({
-    //       id: Math.random(),
-    //       customX: e.clientX,
-    //       customY: e.clientY,
-    //     })
-    //     movingBall(ctx, canvas, circleArray)
-    //   }
-    // })
+//     // canvas.addEventListener('mousedown', function (e) {
+//     //   if (circleArray.length === 5) {
+//     //     circleArray.pop()
+//     //   }
+//     //   if (circleArray.length < 5) {
+//     //     circleArray.push({
+//     //       id: Math.random(),
+//     //       customX: e.clientX,
+//     //       customY: e.clientY,
+//     //     })
+//     //     movingBall(ctx, canvas, circleArray)
+//     //   }
+//     // })
 
-    // movingBall(ctx, canvas, circleArray)
+//     // movingBall(ctx, canvas, circleArray)
 
-    // circleArray.map((item, idx) => movingBall(ctx, canvas, item.customX))
-  }
-}
+//     // circleArray.map((item, idx) => movingBall(ctx, canvas, item.customX))
+//   }
+// }
 
-draw()
+// draw()
 
 // Basic blocks that can be used
 // fillRect(x, y, width, height) - Creates a filled rectangle
@@ -151,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
     stencilBuffer: false,
   }
 
-  let rta = new THREE.WebGLRendererTarget(width, height, options)
+  let rta = new THREE.WebGLRenderTarget(width, height, options)
 
-  let rtb = new THREE.WebGLRendererTarget(width, height, options)
+  let rtb = new THREE.WebGLRenderTarget(width, height, options)
 
   const simMaterial = new THREE.ShaderMaterial({
     uniforms: {
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     simMaterial.uniforms.resolution.value.set(newWidth, newHeight)
 
     canvas.width = newWidth
-    canvas.heigh = newHeight
+    canvas.height = newHeight
 
     ctx.fillStyle = '#fb7427'
     ctx.fillRect(0, 0, newWidth, newHeight)
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mouse.y = (window.innerHeight - e.clientY) * window.devicePixelRatio
   })
 
-  renderer.domeElement.addEventListener('mouseleave', () => {
+  renderer.domElement.addEventListener('mouse leave', () => {
     mouse.set(0, 0)
   })
 

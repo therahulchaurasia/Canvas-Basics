@@ -1,96 +1,47 @@
-/*
-  Josh's Custom CSS Reset
-  https://www.joshwcomeau.com/css/custom-css-reset/
-*/
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-html,
-body,
-#root {
+
+body {
+  width: 100%;
   height: 100%;
-}
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-#root,
-#__next {
-  isolation: isolate;
-}
-/* Custom styles for the app */
-/*
-  Theme and global variables
-*/
-html {
-  overflow-y: scroll;
-
-  --game-spacing: 32px;
-  --header-height: 4rem;
-
-  --color-success: hsl(150deg 70% 30%);
-  --color-warning: hsl(50deg 100% 30%);
-  --color-error: hsl(0deg 70% 45%);
-  --color-gray-100: hsl(0deg 0% 10%);
-  --color-gray-300: hsl(0deg 0% 25%);
-  --color-gray-500: hsl(0deg 0% 50%);
-  --color-gray-700: hsl(0deg 0% 75%);
-  --color-gray-900: hsl(0deg 0% 90%);
+  font-family: 'Arial, sans-serif';
+  background-color: #000000;
+  color: '#fef4b8';
 }
 
-/*
-  Custom styles
-*/
-body {
-  font-family: sans-serif;
+p {
+  font-size: 15px;
+  line-height: 1.25;
 }
 
-@media (max-height: 600px) {
-  body {
-    --game-spacing: 8px;
-  }
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
 }
-/* the canvas should take entire viewport */
-/* canvas {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--color-gray-900);
-  display: block;
-  margin: 0 auto;
-  border-radius: 0.5rem;
-  box-shadow: 0px 0px 10px var(--color-gray-500);
-} */
 
-canvas {
-  background: rgb(4, 140, 189);
-  /* border: 2px solid; */
-  background-color: aqua;
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+button {
+  outline: none;
+  border: 2px solid #fef4b8;
+  border-radius: 2em;
+  color: #fef4b8;
+  background-color: transparent;
+  font-family: 'Arial, sans-serif';
+  font-size: 15px;
+  padding: 0.5em 1em;
 }
