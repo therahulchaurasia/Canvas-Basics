@@ -80,7 +80,7 @@ export const renderFragmentShader = `
   void main() {
     vec4 data = texture2D(textureA, vUv);
 
-		vec2 distortion = 0.5 * data.zw;
+		vec2 distortion = 0.8 * data.zw;
     vec4 color = texture2D(textureB, vUv + distortion);
 
     vec3 normal = normalize(vec3(-data.z * 2.0, 0.5, -data.w * 2.0));

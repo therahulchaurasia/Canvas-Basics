@@ -3,100 +3,100 @@ import {
   simulationFragmentShader,
   renderVertexShader,
   renderFragmentShader,
-} from './shader.js'
-// function drawGrid(ctx, width, height, step = 25) {
-//   ctx.strokeStyle = '#ddd'
-//   ctx.font = '10px sans-serif'
-//   for (let x = 0; x <= width; x += step) {
-//     ctx.beginPath()
-//     ctx.moveTo(x, 0)
-//     ctx.lineTo(x, height)
-//     ctx.stroke()
-//     ctx.fillText(x, x + 2, 10)
-//   }
-//   for (let y = 0; y <= height; y += step) {
-//     ctx.beginPath()
-//     ctx.moveTo(0, y)
-//     ctx.lineTo(width, y)
-//     ctx.stroke()
-//     ctx.fillText(y, 2, y - 2)
-//   }
-// }
+} from "./shader.js"
+function drawGrid(ctx, width, height, step = 25) {
+  ctx.strokeStyle = '#ddd'
+  ctx.font = '10px sans-serif'
+  for (let x = 0; x <= width; x += step) {
+    ctx.beginPath()
+    ctx.moveTo(x, 0)
+    ctx.lineTo(x, height)
+    ctx.stroke()
+    ctx.fillText(x, x + 2, 10)
+  }
+  for (let y = 0; y <= height; y += step) {
+    ctx.beginPath()
+    ctx.moveTo(0, y)
+    ctx.lineTo(width, y)
+    ctx.stroke()
+    ctx.fillText(y, 2, y - 2)
+  }
+}
 
-// function draw() {
-//   const canvas = document.getElementById('myCanvas')
-//   if (canvas.getContext) {
-//     const ctx = canvas.getContext('2d')
+function draw() {
+  const canvas = document.getElementById('myCanvas')
+  if (canvas.getContext) {
+    const ctx = canvas.getContext('2d')
 
-//     // Draw grid for reference
-//     const minX = 225
-//     const rangeX = 50
-//     let p = 0
+    // Draw grid for reference
+    const minX = 225
+    const rangeX = 50
+    let p = 0
 
-//     canvas.addEventListener('mousemove', function (e) {
-//       p = e.offsetX / canvas.width
-//     })
+    canvas.addEventListener('mousemove', function (e) {
+      p = e.offsetX / canvas.width
+    })
 
-//     const bowTie = new Image()
-//     bowTie.src = 'bowTie.png'
-//     function animate() {
-//       ctx.clearRect(0, 0, canvas.width, canvas.height)
-//       drawGrid(ctx, canvas.width, canvas.height)
-//       Body(250, 650, 130, 0.8, ctx)
-//       // p = p + 0.02
-//       // if (p > 1) {
-//       //   p = 0
-//       // }
+    const bowTie = new Image()
+    bowTie.src = 'bowTie.png'
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      drawGrid(ctx, canvas.width, canvas.height)
+      Body(250, 650, 130, 0.8, ctx)
+      // p = p + 0.02
+      // if (p > 1) {
+      //   p = 0
+      // }
 
-//       const leftEyeX = minX + rangeX * p - 25
-//       const rightEyeX = minX + rangeX * p + 25
-//       ctx.beginPath()
+      const leftEyeX = minX + rangeX * p - 25
+      const rightEyeX = minX + rangeX * p + 25
+      ctx.beginPath()
 
-//       ctx.arc(leftEyeX, 225, 15, 0, Math.PI * 2, false)
-//       ctx.arc(rightEyeX, 225, 15, 0, Math.PI * 2, false)
-//       ctx.fillStyle = 'black'
-//       ctx.fill()
-//       ctx.drawImage(bowTie, 200, 290, 100, 50)
-//       requestAnimationFrame(animate)
-//       ctx.beginPath()
-//       ctx.font = '40px Comic Sans MS'
-//       ctx.textAlign = 'center'
-//       ctx.textBaseline = 'middle'
-//       ctx.fillText('Merry', 250, 375)
-//       ctx.fillText('Christmas', 250, 425)
-//       // ctx.arc(250, 375, 5, 0, Math.PI * 2)
-//       // ctx.fill()
-//     }
-//     animate()
+      ctx.arc(leftEyeX, 225, 15, 0, Math.PI * 2, false)
+      ctx.arc(rightEyeX, 225, 15, 0, Math.PI * 2, false)
+      ctx.fillStyle = 'black'
+      ctx.fill()
+      ctx.drawImage(bowTie, 200, 290, 100, 50)
+      requestAnimationFrame(animate)
+      ctx.beginPath()
+      ctx.font = '40px Comic Sans MS'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText('Merry', 250, 375)
+      ctx.fillText('Christmas', 250, 425)
+      // ctx.arc(250, 375, 5, 0, Math.PI * 2)
+      // ctx.fill()
+    }
+    animate()
 
-//     // const firstCircle = {
-//     //   id: Math.random(),
-//     //   customX: 0,
-//     //   customY: 350,
-//     // }
-//     // const circleArray = [firstCircle]
+    // const firstCircle = {
+    //   id: Math.random(),
+    //   customX: 0,
+    //   customY: 350,
+    // }
+    // const circleArray = [firstCircle]
 
-//     // canvas.addEventListener('mousedown', function (e) {
-//     //   if (circleArray.length === 5) {
-//     //     circleArray.pop()
-//     //   }
-//     //   if (circleArray.length < 5) {
-//     //     circleArray.push({
-//     //       id: Math.random(),
-//     //       customX: e.clientX,
-//     //       customY: e.clientY,
-//     //     })
-//     //     movingBall(ctx, canvas, circleArray)
-//     //   }
-//     // })
+    // canvas.addEventListener('mousedown', function (e) {
+    //   if (circleArray.length === 5) {
+    //     circleArray.pop()
+    //   }
+    //   if (circleArray.length < 5) {
+    //     circleArray.push({
+    //       id: Math.random(),
+    //       customX: e.clientX,
+    //       customY: e.clientY,
+    //     })
+    //     movingBall(ctx, canvas, circleArray)
+    //   }
+    // })
 
-//     // movingBall(ctx, canvas, circleArray)
+    // movingBall(ctx, canvas, circleArray)
 
-//     // circleArray.map((item, idx) => movingBall(ctx, canvas, item.customX))
-//   }
-// }
+    // circleArray.map((item, idx) => movingBall(ctx, canvas, item.customX))
+  }
+}
 
-// draw()
+draw()
 
 // Basic blocks that can be used
 // fillRect(x, y, width, height) - Creates a filled rectangle
@@ -120,151 +120,151 @@ import {
 // strokeStyle=Changes the color of a stroke
 // fillStyle=Changes the color of fill
 
-document.addEventListener('DOMContentLoaded', () => {
-  const scene = new THREE.Scene()
-  const simScene = new THREE.Scene()
+// document.addEventListener("DOMContentLoaded", () => {
+//   const scene = new THREE.Scene()
+//   const simScene = new THREE.Scene()
 
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
+//   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
 
-  const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true,
-    preserveDrawingBuffer: true,
-  })
+//   const renderer = new THREE.WebGLRenderer({
+//     antialias: true,
+//     alpha: true,
+//     preserveDrawingBuffer: true,
+//   })
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  document.body.appendChild(renderer.domElement)
+//   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+//   renderer.setSize(window.innerWidth, window.innerHeight)
+//   document.body.appendChild(renderer.domElement)
 
-  const mouse = new THREE.Vector2()
-  let frame = 0
+//   const mouse = new THREE.Vector2()
+//   let frame = 0
 
-  const width = window.innerWidth * window.devicePixelRatio
-  const height = window.innerHeight * window.devicePixelRatio
+//   const width = window.innerWidth * window.devicePixelRatio
+//   const height = window.innerHeight * window.devicePixelRatio
 
-  const options = {
-    format: THREE.RGBAFormat,
-    type: THREE.FloatType,
-    minFilter: THREE.LinearFilter,
-    magFilter: THREE.LinearFilter,
-    depthBuffer: false,
-    stencilBuffer: false,
-  }
+//   const options = {
+//     format: THREE.RGBAFormat,
+//     type: THREE.FloatType,
+//     minFilter: THREE.LinearFilter,
+//     magFilter: THREE.LinearFilter,
+//     depthBuffer: false,
+//     stencilBuffer: false,
+//   }
 
-  let rta = new THREE.WebGLRenderTarget(width, height, options)
+//   let rta = new THREE.WebGLRenderTarget(width, height, options)
 
-  let rtb = new THREE.WebGLRenderTarget(width, height, options)
+//   let rtb = new THREE.WebGLRenderTarget(width, height, options)
 
-  const simMaterial = new THREE.ShaderMaterial({
-    uniforms: {
-      textureA: { value: null },
-      mouse: { value: mouse },
-      resolution: { value: new THREE.Vector2(width, height) },
-      time: { value: 0 },
-      frame: { value: 0 },
-    },
-    vertexShader: simulationVertexShader,
-    fragmentShader: simulationFragmentShader,
-  })
+//   const simMaterial = new THREE.ShaderMaterial({
+//     uniforms: {
+//       textureA: { value: null },
+//       mouse: { value: mouse },
+//       resolution: { value: new THREE.Vector2(width, height) },
+//       time: { value: 0 },
+//       frame: { value: 0 },
+//     },
+//     vertexShader: simulationVertexShader,
+//     fragmentShader: simulationFragmentShader,
+//   })
 
-  const renderMaterial = new THREE.ShaderMaterial({
-    uniforms: {
-      textureA: { value: null },
-      textureB: { value: null },
-    },
-    vertexShader: renderVertexShader,
-    fragmentShader: renderFragmentShader,
-    transparent: true,
-  })
+//   const renderMaterial = new THREE.ShaderMaterial({
+//     uniforms: {
+//       textureA: { value: null },
+//       textureB: { value: null },
+//     },
+//     vertexShader: renderVertexShader,
+//     fragmentShader: renderFragmentShader,
+//     transparent: true,
+//   })
 
-  const plane = new THREE.PlaneGeometry(2, 2)
-  const simQuad = new THREE.Mesh(plane, simMaterial)
-  const renderQuad = new THREE.Mesh(plane, renderMaterial)
+//   const plane = new THREE.PlaneGeometry(2, 2)
+//   const simQuad = new THREE.Mesh(plane, simMaterial)
+//   const renderQuad = new THREE.Mesh(plane, renderMaterial)
 
-  simScene.add(simQuad)
-  scene.add(renderQuad)
+//   simScene.add(simQuad)
+//   scene.add(renderQuad)
 
-  const canvas = document.createElement('canvas')
-  canvas.width = width
-  canvas.height = height
+//   const canvas = document.createElement("canvas")
+//   canvas.width = width
+//   canvas.height = height
 
-  const ctx = canvas.getContext('2d', {
-    alpha: true,
-  })
+//   const ctx = canvas.getContext("2d", {
+//     alpha: true,
+//   })
 
-  ctx.fillStyle = '#000000'
-  ctx.fillRect(0, 0, width, height)
+//   ctx.fillStyle = "#000000"
+//   ctx.fillRect(0, 0, width, height)
 
-  const fontSize = Math.round(250 * window.devicePixelRatio)
-  ctx.fillStyle = '#fef4b8'
-  ctx.font = `bold ${fontSize}px Arial`
-  ctx.textAlign = 'center'
-  ctx.textBaseLine = 'middle'
-  ctx.textRendering = 'geometricPrecision'
-  ctx.imageSmoothingEnabled = true
-  ctx.imageSmoothingQuality = 'high'
+//   const fontSize = Math.round(250 * window.devicePixelRatio)
+//   ctx.fillStyle = "#fef4b8"
+//   ctx.font = `bold ${fontSize}px Arial`
+//   ctx.textAlign = "center"
+//   ctx.textBaseLine = "middle"
+//   ctx.textRendering = "geometricPrecision"
+//   ctx.imageSmoothingEnabled = true
+//   ctx.imageSmoothingQuality = "high"
 
-  ctx.fillText('SoftHorizon', width / 2, height / 2)
+//   ctx.fillText("SoftHorizon", width / 2, height / 2)
 
-  const textTexture = new THREE.CanvasTexture(canvas)
-  textTexture.minFilter = THREE.LinearFilter
-  textTexture.magFilter = THREE.LinearFilter
-  textTexture.format = THREE.RGBAFormat
+//   const textTexture = new THREE.CanvasTexture(canvas)
+//   textTexture.minFilter = THREE.LinearFilter
+//   textTexture.magFilter = THREE.LinearFilter
+//   textTexture.format = THREE.RGBAFormat
 
-  window.addEventListener('resize', () => {
-    const newWidth = window.innerWidth * window.devicePixelRatio
-    const newHeight = window.innerHeight * window.devicePixelRatio
+//   window.addEventListener("resize", () => {
+//     const newWidth = window.innerWidth * window.devicePixelRatio
+//     const newHeight = window.innerHeight * window.devicePixelRatio
 
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    rta.setSize(newWidth, newHeight)
-    rtb.setSize(newWidth, newHeight)
-    simMaterial.uniforms.resolution.value.set(newWidth, newHeight)
+//     renderer.setSize(window.innerWidth, window.innerHeight)
+//     rta.setSize(newWidth, newHeight)
+//     rtb.setSize(newWidth, newHeight)
+//     simMaterial.uniforms.resolution.value.set(newWidth, newHeight)
 
-    canvas.width = newWidth
-    canvas.height = newHeight
+//     canvas.width = newWidth
+//     canvas.height = newHeight
 
-    ctx.fillStyle = '#fb7427'
-    ctx.fillRect(0, 0, newWidth, newHeight)
+//     ctx.fillStyle = "#fb7427"
+//     ctx.fillRect(0, 0, newWidth, newHeight)
 
-    const newFontSize = Math.round(250 * window.devicePixelRatio)
-    ctx.fillStyle = '#fef4b8'
-    ctx.font = `bold ${newFontSize}px Arial`
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
+//     const newFontSize = Math.round(250 * window.devicePixelRatio)
+//     ctx.fillStyle = "#fef4b8"
+//     ctx.font = `bold ${newFontSize}px Arial`
+//     ctx.textAlign = "center"
+//     ctx.textBaseline = "middle"
 
-    ctx.fillText('SoftHorizon', width / 2, height / 2)
+//     ctx.fillText("SoftHorizon", width / 2, height / 2)
 
-    textTexture.needsupdate = true
-  })
+//     textTexture.needsupdate = true
+//   })
 
-  renderer.domElement.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX * window.devicePixelRatio
-    mouse.y = (window.innerHeight - e.clientY) * window.devicePixelRatio
-  })
+//   renderer.domElement.addEventListener("mousemove", (e) => {
+//     mouse.x = e.clientX * window.devicePixelRatio
+//     mouse.y = (window.innerHeight - e.clientY) * window.devicePixelRatio
+//   })
 
-  renderer.domElement.addEventListener('mouse leave', () => {
-    mouse.set(0, 0)
-  })
+//   renderer.domElement.addEventListener("mouse leave", () => {
+//     mouse.set(0, 0)
+//   })
 
-  const animate = () => {
-    simMaterial.uniforms.frame.value = frame++
-    simMaterial.uniforms.time.value = performance.now() / 1000
+//   const animate = () => {
+//     simMaterial.uniforms.frame.value = frame++
+//     simMaterial.uniforms.time.value = performance.now() / 1000
 
-    simMaterial.uniforms.textureA.value = rta.texture
-    renderer.setRenderTarget(rtb)
-    renderer.render(simScene, camera)
+//     simMaterial.uniforms.textureA.value = rta.texture
+//     renderer.setRenderTarget(rtb)
+//     renderer.render(simScene, camera)
 
-    renderMaterial.uniforms.textureA.value = rtb.texture
-    renderMaterial.uniforms.textureB.value = textTexture
-    renderer.setRenderTarget(null)
-    renderer.render(scene, camera)
+//     renderMaterial.uniforms.textureA.value = rtb.texture
+//     renderMaterial.uniforms.textureB.value = textTexture
+//     renderer.setRenderTarget(null)
+//     renderer.render(scene, camera)
 
-    const temp = rta
-    rta = rtb
-    rtb = temp
+//     const temp = rta
+//     rta = rtb
+//     rtb = temp
 
-    requestAnimationFrame(animate)
-  }
+//     requestAnimationFrame(animate)
+//   }
 
-  animate()
-})
+//   animate()
+// })
